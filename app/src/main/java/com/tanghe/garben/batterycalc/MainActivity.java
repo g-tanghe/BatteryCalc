@@ -1,5 +1,8 @@
 package com.tanghe.garben.batterycalc;
 
+import android.content.Context;
+import android.os.Vibrator;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -28,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
     protected EditText editText4;
     protected EditText editText5;
     protected TextView textView13;
+
+    protected long time = 300L;
+    protected long[] patern = {0,100,100,50};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,18 +99,28 @@ public class MainActivity extends AppCompatActivity {
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) throws NumberFormatException {
                 try {
                     capacityA = Integer.parseInt(editText.getText().toString());
-                    if (capacityA > 0 && capacityA < 100000) {
+                    if (capacityA > 99 && capacityA < 100001) {
+                        editText.setHint(Integer.toString(capacityA));
                         editText.setText(Integer.toString(capacityA));
                         last = 1;
                         calc3rd();
-                        secondLast = 1;
+                        if (calc3rd()) {
+                            secondLast = 0;
+                        }
+                        else {
+                            secondLast = 1;
+                        }
                     }
                     else {
+                        Vibrator v = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+                        v.vibrate(time);
                         capacityA = 0;
                         editText.setText("");
                     }
                 }
                 catch (NumberFormatException nfe) {
+                    Vibrator v = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+                    v.vibrate(time);
                     capacityA = 0;
                     editText.setText("");
                 }
@@ -117,18 +133,28 @@ public class MainActivity extends AppCompatActivity {
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) throws NumberFormatException {
                 try {
                     energyA = round2decimals(Double.parseDouble(editText2.getText().toString()));
-                    if (energyA > 0 && energyA < 100) {
+                    if (energyA > 0 && energyA < 101) {
+                        editText2.setHint(Double.toString(energyA));
                         editText2.setText(Double.toString(energyA));
                         last = 2;
                         calc3rd();
-                        secondLast = 2;
+                        if (calc3rd()) {
+                            secondLast = 0;
+                        }
+                        else {
+                            secondLast = 2;
+                        }
                     }
                     else {
+                        Vibrator v = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+                        v.vibrate(time);
                         energyA = 0.0;
                         editText2.setText("");
                     }
                 }
                 catch (NumberFormatException nfe) {
+                    Vibrator v = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+                    v.vibrate(time);
                     energyA = 0.0;
                     editText2.setText("");
                 }
@@ -141,18 +167,28 @@ public class MainActivity extends AppCompatActivity {
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) throws NumberFormatException {
                 try {
                     voltageA = round2decimals(Double.parseDouble(editText3.getText().toString()));
-                    if (voltageA > 0 && voltageA < 100) {
+                    if (voltageA > 0 && voltageA < 231) {
+                        editText3.setHint(Double.toString(voltageA));
                         editText3.setText(Double.toString(voltageA));
                         last = 3;
                         calc3rd();
-                        secondLast = 3;
+                        if (calc3rd()) {
+                            secondLast = 0;
+                        }
+                        else {
+                            secondLast = 3;
+                        }
                     }
                     else {
+                        Vibrator v = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+                        v.vibrate(time);
                         voltageA = 0.0;
                         editText3.setText("");
                     }
                 }
                 catch (NumberFormatException nfe) {
+                    Vibrator v = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+                    v.vibrate(time);
                     voltageA = 0.0;
                     editText3.setText("");
                 }
@@ -165,18 +201,23 @@ public class MainActivity extends AppCompatActivity {
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) throws NumberFormatException {
                 try {
                     capacityB = Integer.parseInt(editText4.getText().toString());
-                    if (capacityB > 0 && capacityB < 100000) {
+                    if (capacityB > 100 && capacityB < 100001) {
+                        editText4.setHint(Integer.toString(capacityB));
                         editText4.setText(Integer.toString(capacityB));
                         if (voltageB != 0.0 && capacityA != 0 && energyA != 0.0 && voltageA != 0.0) {
                             calcResult();
                         }
                     }
                     else {
+                        Vibrator v = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+                        v.vibrate(time);
                         capacityB = 0;
                         editText4.setText("");
                     }
                 }
                 catch (NumberFormatException nfe) {
+                    Vibrator v = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+                    v.vibrate(time);
                     capacityB = 0;
                     editText4.setText("");
                 }
@@ -189,18 +230,25 @@ public class MainActivity extends AppCompatActivity {
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) throws NumberFormatException {
                 try {
                     voltageB = round2decimals(Double.parseDouble(editText5.getText().toString()));
-                    if (voltageB > 0 && voltageB < 100) {
+                    if (voltageB > 0 && voltageB < 231) {
+                        editText5.setHint(Double.toString(voltageB));
                         editText5.setText(Double.toString(voltageB));
                         if (capacityB != 0.0 && capacityA != 0 && energyA != 0.0 && voltageA != 0.0) {
                             calcResult();
                         }
+                        else if (capacityB == 0) {
+                        }
                     }
                     else {
+                        Vibrator v = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+                        v.vibrate(time);
                         voltageB = 0.0;
                         editText5.setText("");
                     }
                 }
                 catch (NumberFormatException nfe) {
+                    Vibrator v = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+                    v.vibrate(time);
                     voltageB = 0.0;
                     editText5.setText("");
 
@@ -214,7 +262,7 @@ public class MainActivity extends AppCompatActivity {
         return Math.round(d*100)/100.0;
     }
 
-    protected void calc3rd() {
+    protected boolean calc3rd() {
         if (secondLast != last && secondLast != 0) {
             if ((last == 1 && secondLast == 2) || (last == 2 && secondLast == 1)) {
                 calcVoltageA();
@@ -225,11 +273,14 @@ public class MainActivity extends AppCompatActivity {
             else {
                 calcCapacityA();
             }
+            return true;
         }
+        return false;
     }
 
     protected void calcCapacityA() {
         capacityA = (int)Math.round(energyA/voltageA*1000);
+        editText.setHint(Integer.toString(capacityA));
         editText.setText(Integer.toString(capacityA));
         if (capacityB != 0 && voltageB != 0.0) {
             calcResult();
@@ -238,6 +289,7 @@ public class MainActivity extends AppCompatActivity {
 
     protected void calcEnergyA() {
         energyA = round2decimals(capacityA/1000*voltageA);
+        editText2.setHint(Double.toString(energyA));
         editText2.setText(Double.toString(energyA));
         if (capacityB != 0 && voltageB != 0.0) {
             calcResult();
@@ -247,6 +299,7 @@ public class MainActivity extends AppCompatActivity {
     protected void calcVoltageA() {
         voltageA = round2decimals(energyA/capacityA*1000);
         editText3.setText(Double.toString(voltageA));
+        editText3.setText(Double.toString(voltageA));
         if (capacityB != 0 && voltageB != 0.0) {
             calcResult();
         }
@@ -254,6 +307,9 @@ public class MainActivity extends AppCompatActivity {
 
     protected void calcResult() {
         int capacityC = (int)Math.round(capacityA*voltageA/voltageB*Math.pow(0.875,2));
+
+        Vibrator v = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+        v.vibrate(patern,-1);
         textView13.setText("Real charging capacity: " + Integer.toString(capacityC) + " mAh\nPercentage you can charge: " + Integer.toString((int)Math.round((double)capacityC/capacityB*100)) + " %\nYou can charge your phone " + Double.toString(round2decimals((double)capacityC/capacityB)) + " times!");
     }
 }
