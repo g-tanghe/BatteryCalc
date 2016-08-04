@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1069618497392",
+    "firebase_url": "https://admob-app-id-8108055942.firebaseio.com",
+    "project_id": "admob-app-id-8108055942",
+    "storage_bucket": "admob-app-id-8108055942.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1069618497392:android:0a5df14bc7563f48",
+        "android_client_info": {
+          "package_name": "com.tanghe.garben.batterycalc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1069618497392-320o4qi8nu057bepf4036u3sq1t0f4di.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlP2u-0wwloI5RXN00JpvGLbkdXC3NGxQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
