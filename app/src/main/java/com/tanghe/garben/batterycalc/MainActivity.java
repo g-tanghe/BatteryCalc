@@ -1,8 +1,6 @@
 package com.tanghe.garben.batterycalc;
 
-import android.content.Context;
 import android.os.Vibrator;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -11,7 +9,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-
 import com.google.android.gms.ads.MobileAds;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
     protected EditText editText5;
     protected TextView textView13;
 
-    protected long time = 300L;
-    protected long[] patern = {0,100,100,50};
+    protected final long time = 300L;
+    protected final long[] patern = {0,100,100,50};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
